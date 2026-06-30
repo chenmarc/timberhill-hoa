@@ -1,0 +1,601 @@
+/* ============================================================
+   Timberhill Homeowners Association — Main Stylesheet
+   
+   COLOR PALETTE:
+     --bg-teal:     #8fbbbc   page background
+     --bg-sand:     #d8d7b3   header, footer, sidebar
+     --bg-cream:    #fef1c3   main content area
+     --green-dark:  #227648   header title, accent headings
+     --green-link:  #077647   hover / active states
+     --text-olive:  #535341   nav links, sidebar text
+     --text-navy:   #030d5c   body copy, footer
+     --nav-active:  #c4c49a   selected tab background
+     --nav-hover:   #2e3f55   tab hover background
+   ============================================================ */
+
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  margin: 2vh;
+  padding: 0;
+  min-height: 100vh;
+  background: #8fbbbc;
+  font-family: Arial, sans-serif;
+  color: #535341;
+  line-height: 1.5;
+}
+
+a { color: #030d8a; text-decoration: underline; }
+a:hover { color: #077647; }
+a:focus-visible {
+  outline: 2px solid #077647;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Page wrapper ── */
+#page-content {
+  background: #8fbbbc;
+  border: 1px solid #555;
+  width: 96vw;
+  min-height: 96vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ================================================================
+   HEADER
+   ================================================================ */
+#header {
+  width: 100%;
+  background: #d8d7b3;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Title-only header bar (no image) */
+.header-title-bar {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px 10px;
+  background: #d8d7b3;
+}
+
+.header-title {
+  margin: 0;
+  color: #227648;
+  font-size: clamp(1.1rem, 2.4vw, 1.9rem);
+  font-weight: normal;
+  font-family: Arial, sans-serif;
+}
+
+/* ================================================================
+   TOP NAV BAR
+   ================================================================ */
+#top-nav {
+  background: #d8d7b3;
+  border-top: 1px solid #bbb;
+  padding: 0 8px;
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+#top-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  padding: 4px 0;
+  gap: 4px;
+}
+
+#top-nav ul li button.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 12px;
+  color: #535341;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 0.72em;
+  line-height: 1;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+#top-nav ul li button.tab-btn:hover {
+  background-color: #2e3f55;
+  color: #fff;
+  transform: scale(0.95);
+}
+
+#top-nav ul li button.tab-btn.active {
+  background-color: #c4c49a;
+  color: #000;
+}
+
+/* Mobile hamburger */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: auto;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #535341;
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-current-label { display: none; font-size: 0.8em; font-weight: bold; color: #535341; }
+
+/* ================================================================
+   CONTENT AREA
+   ================================================================ */
+#content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  width: 100%;
+  min-height: 0;
+}
+
+/* ── Left sidebar ── */
+#left-menu {
+  width: 20vw;
+  min-width: 140px;
+  max-width: 220px;
+  background-color: #d8d7b2;
+  font-size: 0.95em;
+  overflow-y: auto;
+  flex-shrink: 0;
+  padding-bottom: 12px;
+}
+
+/* Top-level list */
+#left-menu > ul {
+  list-style: none;
+  padding: 10px 0 0;
+}
+
+/* Nested sub-lists */
+#left-menu ul ul {
+  list-style: none;
+  padding: 0;
+  /* subtle left-indent stripe to signal nesting */
+  border-left: 2px solid #b8b79a;
+  margin: 2px 0 6px 18px;
+}
+
+/* ── Top-level links — clear, slightly bold ── */
+#left-menu > ul > li > a {
+  display: block;
+  color: #353524;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88em;
+  padding: 6px 10px 6px 14px;
+  border-left: 3px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+#left-menu > ul > li > a:hover,
+#left-menu > ul > li > a.current {
+  color: #077647;
+  border-left-color: #077647;
+}
+
+/* ── Sub-item links — smaller, lighter, clearly subordinate ── */
+#left-menu .sub-item a {
+  display: block;
+  color: #6b6b52;
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 0.78em;
+  padding: 3px 8px 3px 10px;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+#left-menu .sub-item a:hover,
+#left-menu .sub-item a.current {
+  color: #077647;
+  border-left-color: #077647;
+}
+
+/* ── Right content panel ── */
+#right-content {
+  flex: 1;
+  padding: 14px 24px 28px 20px;
+  background: #fef1c3;
+  color: #030d5c;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 0;
+}
+
+/* Tab panels */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* Panel headline */
+.panel-headline h1 {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #030d5c;
+  line-height: 1.3;
+  margin-bottom: 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #c9c89a;
+}
+
+/* Body text */
+.panel-body {
+  font-size: 0.88em;
+  color: #030d5c;
+  line-height: 1.65;
+}
+
+.panel-body p { margin-bottom: 1em; }
+
+.panel-body h2 {
+  font-size: 1em;
+  font-weight: bold;
+  color: #227648;
+  margin: 1.4em 0 0.5em;
+}
+
+.panel-body h3 {
+  font-size: 0.95em;
+  font-weight: bold;
+  color: #535341;
+  margin: 1em 0 0.3em;
+}
+
+.panel-body ul,
+.panel-body ol {
+  padding-left: 1.4em;
+  margin-bottom: 1em;
+}
+
+.panel-body li { margin-bottom: 0.25em; }
+
+.panel-body strong { color: #000; }
+
+.panel-body .note {
+  background: #f5edd3;
+  border-left: 3px solid #c9a84c;
+  padding: 8px 12px;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.9em;
+  margin: 1em 0;
+}
+
+/* ================================================================
+   HOME PAGE — photo pair
+   ================================================================ */
+.home-photo-row {
+  display: flex;
+  gap: 16px;
+  margin: 18px 0 6px;
+}
+
+.home-photo-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.home-photo-wrap img {
+  width: 100%;
+  height: auto;        /* natural height — no cropping */
+  display: block;
+  border-radius: 4px;
+  border: 3px solid #c4c49a;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+.home-photo-caption {
+  font-size: 0.78em;
+  color: #535341;
+  text-align: center;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+/* ================================================================
+   DOCUMENTS tab
+   ================================================================ */
+/*
+  HOW TO ADD DOCUMENTS:
+  1. Drop your PDF or DOCX into the docs/ folder.
+  2. In index.html, find the relevant <ul class="doc-list"> and add:
+       <li><a href="docs/your-file.pdf" class="pdf" target="_blank" rel="noopener">Label</a></li>
+     Use class="pdf" for PDFs, class="docx" for Word files.
+  That's it — no JS changes needed.
+*/
+
+.doc-section { margin-bottom: 1.6em; }
+
+.doc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.4em 0 0;
+  border: 1px solid #d4c98a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.doc-list li { border-bottom: 1px solid #e2deb8; }
+.doc-list li:last-child { border-bottom: none; }
+
+.doc-list a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  color: #030d8a;
+  text-decoration: none;
+  font-size: 0.87em;
+  transition: background 0.15s, color 0.15s;
+}
+
+.doc-list a:hover {
+  background: #f0ecce;
+  color: #077647;
+}
+
+/* File-type icons via ::before pseudo-element */
+.doc-list a::before {
+  content: "📄";
+  font-size: 1em;
+  flex-shrink: 0;
+}
+.doc-list a.pdf::before  { content: "📋"; }
+.doc-list a.docx::before { content: "📝"; }
+.doc-list a.map::before  { content: "🗺️"; }
+
+/* Inline document viewer (PDF/iframe embed) */
+.doc-viewer-wrap {
+  margin-top: 6px;
+  border: 1px solid #c9c89a;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.doc-viewer-wrap iframe {
+  width: 100%;
+  height: 520px;
+  border: none;
+  display: block;
+}
+
+.doc-viewer-note {
+  font-size: 0.78em;
+  color: #535341;
+  padding: 4px 8px;
+  background: #f5edd3;
+  border-top: 1px solid #e2deb8;
+}
+
+/* ================================================================
+   ACCORDION (Owner Rules)
+   ================================================================ */
+.accordion-item {
+  border: 1px solid #c9c89a;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.accordion-btn {
+  width: 100%;
+  background: #eeecc8;
+  border: none;
+  padding: 10px 14px;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  font-size: 0.88em;
+  font-weight: bold;
+  color: #353520;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.accordion-btn:hover { background: #d8d6a8; }
+
+.accordion-btn .arrow {
+  transition: transform 0.25s;
+  font-size: 0.75em;
+  color: #535341;
+  flex-shrink: 0;
+}
+
+.accordion-btn[aria-expanded="true"] .arrow { transform: rotate(180deg); }
+
+.accordion-body {
+  display: none;
+  background: #fffef8;
+}
+
+.accordion-body.accordion-open {
+  display: block;
+}
+
+.accordion-body-inner {
+  padding: 10px 16px;
+  font-size: 0.85em;
+  color: #030d5c;
+  line-height: 1.65;
+}
+
+.accordion-body-inner ul,
+.accordion-body-inner ol {
+  padding-left: 1.2em;
+  margin: 0.4em 0;
+}
+
+.accordion-body-inner li { margin-bottom: 0.3em; }
+
+/* ================================================================
+   CONTACT tab
+   ================================================================ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 22px;
+  margin: 0.8em 0 1.4em;
+}
+
+.contact-card {
+  background: #f5edd3;
+  border: 1px solid #d4c98a;
+  border-radius: 4px;
+  padding: 12px 16px;
+}
+
+.contact-card h3 {
+  color: #227648;
+  font-size: 0.95em;
+  margin-bottom: 8px;
+}
+
+.contact-card p,
+.contact-card li {
+  font-size: 0.85em;
+  color: #353520;
+  line-height: 1.55;
+}
+
+.contact-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-card ul li {
+  padding: 3px 0;
+  border-bottom: 1px solid #e8e0c0;
+}
+
+.contact-card ul li:last-child { border-bottom: none; }
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+#footer {
+  flex-shrink: 0;
+  min-height: 48px;
+  width: 100%;
+  background: #d8d7b3;
+  color: #030d5c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px;
+  font-size: 0.82em;
+  border-top: 1px solid #bbb;
+  gap: 10px;
+}
+
+.footer-left { color: #030d5c; }
+.footer-right { color: #535341; }
+
+/* ================================================================
+   RESPONSIVE — MOBILE  (≤700px)
+   ================================================================ */
+@media (max-width: 700px) {
+  body { margin: 0; }
+
+  #page-content {
+    width: 100vw;
+    min-height: 100vh;
+    border: none;
+  }
+
+  .header-title { font-size: clamp(0.95rem, 4.5vw, 1.3rem); }
+
+  .hamburger { display: flex; }
+  .nav-current-label { display: block; }
+
+  .nav-wrapper {
+    padding: 4px 10px;
+    justify-content: space-between;
+  }
+
+  #top-nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 4px 0 8px;
+    gap: 2px;
+  }
+
+  #top-nav ul.open { display: flex; }
+
+  #top-nav ul li { width: 100%; }
+
+  #top-nav ul li button.tab-btn {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 16px;
+    border-radius: 0;
+    font-size: 0.85em;
+  }
+
+  #content { flex-direction: column; overflow: visible; }
+
+  #left-menu { display: none; }   /* hidden on mobile; nav covers it */
+
+  #right-content {
+    overflow-y: visible;
+    padding: 12px 14px 24px;
+  }
+
+  .home-photo-row { flex-direction: column; gap: 12px; }
+  .home-photo-wrap img { height: 200px; }
+
+  .contact-grid { grid-template-columns: 1fr; }
+
+  #footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 14px;
+    min-height: auto;
+    gap: 4px;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

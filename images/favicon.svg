@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="pnw" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2d6a4f"/>
+      <stop offset="40%" stop-color="#40916c"/>
+      <stop offset="75%" stop-color="#52b788"/>
+      <stop offset="100%" stop-color="#1b4332"/>
+    </linearGradient>
+  </defs>
+  <!-- tree trunk -->
+  <rect x="14" y="24" width="4" height="6" fill="#5c3d1e" rx="1"/>
+  <!-- bottom tier (widest) -->
+  <polygon points="16,10 4,26 28,26" fill="url(#pnw)"/>
+  <!-- middle tier -->
+  <polygon points="16,4 7,18 25,18" fill="url(#pnw)"/>
+  <!-- top tier (narrowest) -->
+  <polygon points="16,0 11,11 21,11" fill="#2d6a4f"/>
+</svg>
