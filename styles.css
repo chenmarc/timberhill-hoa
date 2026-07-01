@@ -401,6 +401,23 @@ a:focus-visible {
   border-top: 1px solid #e2deb8;
 }
 
+.doc-back-top {
+  display: inline-block;
+  margin: 8px 8px 0;
+  padding: 4px 10px;
+  border: 1px solid #c9c89a;
+  border-radius: 4px;
+  background: #f5edd3;
+  color: #030d8a;
+  font-size: 0.78em;
+  text-decoration: none;
+}
+
+.doc-back-top:hover {
+  background: #ece6c4;
+  color: #077647;
+}
+
 /* ================================================================
    ACCORDION (Owner Rules)
    ================================================================ */
