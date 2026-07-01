@@ -16,6 +16,7 @@
     const tabBtns = document.querySelectorAll(".tab-btn[data-tab]");
     const tabPanels = document.querySelectorAll(".tab-panel");
     const leftLinks = document.querySelectorAll("#left-menu a[data-tab]");
+    const dataTabLinks = document.querySelectorAll("a[data-tab]");
 
     function activateTab(tabId) {
       tabPanels.forEach((panel) => {
@@ -46,6 +47,14 @@
 
     leftLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
+        e.preventDefault();
+        activateTab(link.dataset.tab);
+      });
+    });
+
+    dataTabLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        if (link.closest("#left-menu")) return;
         e.preventDefault();
         activateTab(link.dataset.tab);
       });
